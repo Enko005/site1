@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Опитування</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green-dark: #1b5e20;
+    --green: #2e7d32;
+    --green-mid: #43a047;
+    --green-light: #a5d6a7;
+    --green-pale: #e8f5e9;
+    --white: #ffffff;
+    --text: #1f2d20;
+    --muted: #5a6b5c;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: var(--green-pale);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  header {
+    background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+    color: var(--white);
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -10%;
+    width: 500px; height: 500px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -80%; right: -5%;
+    width: 400px; height: 400px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  header h1 {
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.5px;
+  }
+  header p {
+    font-size: 1.1rem;
+    opacity: 0.92;
+    position: relative;
+    z-index: 1;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 1.9rem;
+    color: var(--green-dark);
+    margin-bottom: 12px;
+  }
+  .section-sub {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 40px;
+    font-size: 1rem;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 80px;
+  }
+  .gallery-item {
+    background: var(--white);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(27, 94, 32, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .gallery-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(27, 94, 32, 0.22);
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+    background: var(--green-light);
+  }
+  .gallery-item .caption {
+    padding: 16px 20px;
+    font-weight: 600;
+    color: var(--green-dark);
+    text-align: center;
+    border-top: 3px solid var(--green-light);
+  }
+
+  .embed-block {
+    background: var(--white);
+    border-radius: 22px;
+    padding: 30px;
+    margin-bottom: 50px;
+    box-shadow: 0 8px 30px rgba(27, 94, 32, 0.1);
+    border-top: 6px solid var(--green-mid);
+  }
+  .embed-block h2 {
+    color: var(--green-dark);
+    margin-bottom: 8px;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .embed-block .hint {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 22px;
+  }
+  iframe {
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    background: var(--green-pale);
+    display: block;
+  }
+  #form-iframe  { min-height: 900px; }
+  #sheet-iframe { min-height: 600px; }
+
+  footer {
+    background: var(--green-dark);
+    color: var(--white);
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.9rem;
+    opacity: 0.95;
+  }
+  footer span { color: var(--green-light); font-weight: 600; }
+
+  @media (max-width: 860px) {
+    .gallery { grid-template-columns: 1fr 1fr; }
+    .gallery-item:last-child { grid-column: span 2; }
+  }
+  @media (max-width: 560px) {
+    header { padding: 40px 16px; }
+    header h1 { font-size: 1.7rem; }
+    .gallery { grid-template-columns: 1fr; }
+    .gallery-item:last-child { grid-column: auto; }
+    .container { padding: 40px 16px; }
+    .embed-block { padding: 18px; }
+    #form-iframe { min-height: 1100px; }
+    #sheet-iframe { min-height: 500px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Опитування</h1>
+  <p>Заповніть коротку форму нижче — це займе лише пару хвилин. Дякуємо за вашу участь!</p>
+</header>
+
+<div class="container">
+
+  <h2 class="section-title">Наша галерея</h2>
+  <p class="section-sub">Три ключові моменти</p>
+
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80" alt="Природа 1">
+      <div class="caption">Природа</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80" alt="Природа 2">
+      <div class="caption">Світло</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80" alt="Природа 3">
+      <div class="caption">Гармонія</div>
+    </div>
+  </div>
+
+  <!-- GOOGLE FORM — ваша робоча ссылка -->
+  <div class="embed-block">
+    <h2>Заповніть форму</h2>
+    <p class="hint">Ваша участь дуже важлива 🌿</p>
+    <iframe
+      id="form-iframe"
+      src="https://docs.google.com/forms/d/e/1FAIpQLSciqfoOBoKhhhdPA2gYWNJuJLFhY8l4k-LoTFPgRTqaG5sABw/viewform?embedded=true"
+      title="Google Form"
+      loading="lazy">
+      Завантаження…
+    </iframe>
+  </div>
+
+  <!-- РЕЗУЛЬТАТИ (Google Sheets) -->
+  <div class="embed-block">
+    <h2>Результати опитування</h2>
+    <p class="hint">👇 Замініть src нижче на посилання вашої Google Таблиці (Файл → Поділитися → Опублікувати в інтернеті → Вбудувати)</p>
+    <iframe
+      id="sheet-iframe"
+      src="https://docs.google.com/spreadsheets/d/e/2PACX.../pubhtml?widget=true&headers=false"
+      title="Google Sheets Results"
+      loading="lazy">
+      Завантаження…
+    </iframe>
+  </div>
+
+</div>
+
+<footer>
+  © 2025 · Зроблено з <span>зеленим настроєм</span> 🌿
+</footer>
+
+</body>
+</html>
